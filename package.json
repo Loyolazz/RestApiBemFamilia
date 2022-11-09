@@ -1,0 +1,14 @@
+{
+  "name": "apibemfamilia",
+  "version": "1.0.0",
+  "description": "API para o APP Bem Familia",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Victor Breno / Arthur Loyola / José Henrique",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
