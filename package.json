@@ -4,11 +4,19 @@
   "description": "API para o APP Bem Familia",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon ./index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Victor Breno / Arthur Loyola / José Henrique",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.18.2"
+    "body-parser": "^1.20.1",
+    "express": "^4.18.2",
+    "morgan": "^1.10.0",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.25.5"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
   }
 }
