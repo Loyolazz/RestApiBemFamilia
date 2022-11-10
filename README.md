@@ -1,8 +1,8 @@
 # RestApiBemFamilia
 
-instalar dep: npm install --force
-rodar: yarn dev
-criar o banco: yarn sequelize db:create
+instalar dep: npm install --force //
+rodar: yarn dev //
+criar o banco: yarn sequelize db:create //
 
 Seguindo a documentação: https://sequelize.org/docs/v6/getting-started/
 
