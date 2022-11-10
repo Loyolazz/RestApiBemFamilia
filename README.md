@@ -18,7 +18,9 @@ https://www.lambda3.com.br/2016/10/yarn-primeiras-impressoes/
 
 Yarn é uma alternativa para o gerenciador de pacotes mais clássico que temos. Mas não é só! Ele também é bem mais rápido para uma série de tarefas, pois traz algumas técnicas que não estão presentes no npm, como por exemplo:
 
-Um cache local guarda a versão exata da dependência. Ou seja, se no futuro você baixá-la novamente, utilizará a versão que está no cache, atualizando apenas se necessário. Atualmente, o npm tem algo semelhante, mas não é tão performático quanto o Yarn
-Coloca as dependências diretamente no package.json, dispensando uma flag (-s por exemplo) para garantir que elas serão escritas corretamente
+Um cache local guarda a versão exata da dependência. 
+Ou seja, se no futuro você baixá-la novamente, utilizará a versão que está no cache, atualizando apenas se necessário. 
+Atualmente, o npm tem algo semelhante, mas não é tão performático quanto o Yarn coloca as dependências diretamente no package.json, dispensando uma flag (-s por exemplo) para garantir que elas serão escritas corretamente
+<div/>
 Ao instalar as dependências do projeto, ele sempre seguirá uma ordem determinada, fazendo com que todo processo seja bem mais rápido
 Continua utilizando a mesma estrutura já conhecida com o package.json, logo a adaptação é bem tranquila
