@@ -5,6 +5,8 @@ const TechController = require('./controllers/TechController');
 const ReportController = require('./controllers/ReportController');
 const PerfilController = require('./controllers/PerfilController');
 const UsuarioController = require('./controllers/UsuarioController');
+const CategoriaController = require('./controllers/CategoriaController');
+const VideoController = require('./controllers/VideoController');
 
 const routes = express.Router();
 
@@ -25,6 +27,15 @@ routes.post('/usuarios', UsuarioController.store);
 
 routes.get('/usuarios/:usuario_id/perfils', PerfilController.index);
 routes.post('/usuarios/:usuario_id/perfils', PerfilController.store);
+
+
+routes.get('/categorias', CategoriaController.index);
+routes.post('/categorias', CategoriaController.store);
+
+
+routes.get('/categorias/:categoria_id/videos', VideoController.index);
+routes.post('/categorias/:categoria_id/videos', VideoController.store);
+routes.delete('/categorias/:categoria_id/videos', VideoController.delete);
 
 
 module.exports = routes;

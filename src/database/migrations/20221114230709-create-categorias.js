@@ -4,7 +4,7 @@
 module.exports = {
   async up (queryInterface, Sequelize) {
 
-    await queryInterface.createTable('usuarios', {
+    await queryInterface.createTable('categorias', {
        id: {
         type: Sequelize.INTEGER,            // numero
         primaryKey: true,                  //key primeira
@@ -15,11 +15,7 @@ module.exports = {
         type: Sequelize.STRING,            //letra
         allowNull: false,
        },
-       email: {
-        type: Sequelize.STRING,            
-        allowNull: false,
-       },
-       login: {
+       subcategoria: {
         type: Sequelize.STRING,            
         allowNull: false,
        },
@@ -40,7 +36,7 @@ module.exports = {
 
   async down (queryInterface, Sequelize) {
 
-    await queryInterface.dropTable('usuarios');
+    await queryInterface.dropTable('categorias');
 
   }
 };
