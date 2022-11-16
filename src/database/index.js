@@ -7,7 +7,6 @@ const Usuario = require('../models/Usuario');
 const Perfil = require('../models/Perfil');
 const Video = require('../models/Video');
 const Categoria = require('../models/Categoria');
-const Favorito = require('../models/Favorito');
 
 const connection = new Sequelize(dbConfig);
 
