@@ -5,7 +5,7 @@ class Perfil extends Model {
     static init(sequelize) {
         super.init({
             nome: DataTypes.STRING,
-            ativo: dataTypes.STRING,
+            ativo: dataTypes.BOOLEAN,
         },{
             sequelize
         })
