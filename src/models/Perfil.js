@@ -1,11 +1,10 @@
 const { Model, DataTypes } = require('sequelize');
-const dataTypes = require('sequelize/lib/data-types');
 
 class Perfil extends Model {
     static init(sequelize) {
         super.init({
             nome: DataTypes.STRING,
-            ativo: dataTypes.BOOLEAN,
+            ativo: DataTypes.BOOLEAN,
         },{
             sequelize
         })

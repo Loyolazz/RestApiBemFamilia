@@ -1,16 +1,10 @@
 const express = require('express');
-const ReportController = require('./controllers/ReportController');
 const PerfilController = require('./controllers/PerfilController');
 const UsuarioController = require('./controllers/UsuarioController');
 const CategoriaController = require('./controllers/CategoriaController');
 const VideoController = require('./controllers/VideoController');
-const FavoritoController = require('./controllers/FavoritoController');
 
 const routes = express.Router();
-
-
-
-routes.get('/report', ReportController.show);
 
 routes.get('/usuarios', UsuarioController.index);
 routes.post('/usuarios', UsuarioController.store);
