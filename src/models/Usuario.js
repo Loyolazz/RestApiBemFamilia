@@ -13,6 +13,7 @@ class Usuario extends Model {
     }
     static associate(models) {
         this.hasMany(models.Perfil, { foreignKey: 'usuario_id', as: 'perfils'});
+
     }
 }
 

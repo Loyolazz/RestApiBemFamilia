@@ -1,24 +1,14 @@
 const express = require('express');
-const UserController = require('./controllers/UserController');
-const AddressController = require('./controllers/AddressController');
-const TechController = require('./controllers/TechController');
 const ReportController = require('./controllers/ReportController');
 const PerfilController = require('./controllers/PerfilController');
 const UsuarioController = require('./controllers/UsuarioController');
 const CategoriaController = require('./controllers/CategoriaController');
 const VideoController = require('./controllers/VideoController');
+const FavoritoController = require('./controllers/FavoritoController');
 
 const routes = express.Router();
 
-routes.get('/users', UserController.index);
-routes.post('/users', UserController.store);
 
-routes.get('/users/:user_id/addresses', AddressController.index);
-routes.post('/users/:user_id/addresses', AddressController.store);
-
-routes.get('/users/:user_id/techs', TechController.index);
-routes.post('/users/:user_id/techs', TechController.store);
-routes.delete('/users/:user_id/techs', TechController.delete);
 
 routes.get('/report', ReportController.show);
 
@@ -28,14 +18,19 @@ routes.post('/usuarios', UsuarioController.store);
 routes.get('/usuarios/:usuario_id/perfils', PerfilController.index);
 routes.post('/usuarios/:usuario_id/perfils', PerfilController.store);
 
-
+//CATEGORIAS
 routes.get('/categorias', CategoriaController.index);
 routes.post('/categorias', CategoriaController.store);
+routes.delete('/categorias/:id', CategoriaController.delete);
+routes.put('/categorias/:id', CategoriaController.update);
 
-
-routes.get('/categorias/:categoria_id/videos', VideoController.index);
+//VIDEOS
+routes.get('/videos/:id', VideoController.index);
+routes.get('/categorias/:categoria_id/videos', VideoController.list);
 routes.post('/categorias/:categoria_id/videos', VideoController.store);
 routes.delete('/categorias/:categoria_id/videos', VideoController.delete);
+routes.put('/categorias/:categoria_id/videos/:id', VideoController.update);
+
 
 
 module.exports = routes;

@@ -19,6 +19,7 @@ class Video extends Model {
         this.belongsToMany(models.Categoria, { foreignKey: 'video_id', through:'categoria_videos', as: 'categorias' }) //M/M through nome da tabela
 
 
+
     }
 }
 
