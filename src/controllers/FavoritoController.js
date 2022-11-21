@@ -1,44 +1,39 @@
 const Categoria = require('../models/Categoria');
+const Usuario = require('../models/Usuario');
+const Video = require('../models/Video');
 
 
 module.exports = {
 
 
-    async list(req, res) {
-        const { categoria_id } = req.params;
-        const categoria = await Categoria.findByPk(categoria_id, {
-            include: { association: 'videos', through:{ attributes: []}}
-        })
-        if(!categoria) {
-            return res.status(400).json({ error: 'Categoria não encontrada!' });
-        }
-
-        return res.json(categoria.videos)
-
-    },
-
-
     async index(req, res) {
-        const categorias = await Categoria.findAll({
+        const favoritos = await Video.findAll({
             include: 
-                {
-                  association: "videos",
-                  attributes: ["id", "titulo", "url", "ativo"]
-                }
+                [{
+                  association: "usuarios",
+                  where: {
+                    id: req.usuario_id
+                  }
+
+                }]
                   
         });
 
-        return res.json(categorias);
+        return res.json(favoritos);
 
     },
 
 
     async store(req, res) {
-        const { nome, subcategoria, ativo } = req.body;
+        const { video_id } = req.params;
 
-        const categoria = await Categoria.create({ nome, subcategoria, ativo});
+        const video = await Video.findByPk({ video_id });
+        if(!video) {
+            return res.status(400).json({ error: 'Video não encontrado' });
+        }
+        await video.addUsuario(req.usuario_id)
 
-        return res.json(categoria);
+        return res.json({mensagem: 'Video favoritado com sucesso'});
 
     },
 

@@ -12,20 +12,32 @@ module.exports = {
         allowNull: false             //nao pode ser nulo
        },
        nome: {
-        type: Sequelize.STRING,            //letra
+        type: Sequelize.STRING(70),            //letra
         allowNull: false,
        },
        email: {
-        type: Sequelize.STRING,            
+        type: Sequelize.STRING(120),            
         allowNull: false,
+        unique: true
        },
        login: {
+        type: Sequelize.STRING(20),            
+        allowNull: false,
+        unique: true
+       },
+       senha_hash: {
         type: Sequelize.STRING,            
         allowNull: false,
        },
        ativo: {
         type: Sequelize.BOOLEAN,            
         allowNull: false,
+        defaultValue: true
+       },
+       is_admin: {
+        type: Sequelize.BOOLEAN,            
+        allowNull: false,
+        defaultValue: false
        },
        created_at: {
         type: Sequelize.DATE,            
