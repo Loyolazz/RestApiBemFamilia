@@ -1,6 +1,5 @@
 const Usuario = require("../models/Usuario");
 const Yup = require("yup");
-const { response } = require("express");
 
 module.exports = {
 
@@ -8,6 +7,7 @@ module.exports = {
     const { page = 1 } = req.query;
 
     const usuario = await Usuario.findAll({
+      attributes: ['id', 'nome', 'login', 'email', 'ativo', 'is_admin'],
       limit: 20,
       offset: (page - 1) * 20,
     });
@@ -18,7 +18,9 @@ module.exports = {
   async show(req, res) {
     const { id } = req.params;
 
-    const usuario = await Usuario.findByPk(id);
+    const usuario = await Usuario.findByPk(id, {
+      attributes: ['id', 'nome', 'login', 'email', 'ativo', 'is_admin']
+    });
 
     return res.json(usuario);
   },
@@ -66,32 +68,27 @@ module.exports = {
 
 
   async update(req, res) {
-    const schema = Yup.object()
-      .shape({
+    const schema = Yup.object().shape({
         nome: Yup.string().max(70),
-        senha: Yup.string().min(8),
-      })
-      .noUnknown();
+        senha: Yup.string().min(8)
+      }).noUnknown();
 
     try {
-      const { id } = req.params;
-
-      const usuario = await Usuario.findByPk(id);
+      const usuario = await Usuario.findByPk(req.usuarioID);
 
       if (!usuario) {
-        return response.status(400).json({ error: "Usuário não encontrado" });
-     
+        return res.status(400).json({ error: "Usuário não encontrado" });
     }
       const validFields = await schema.validate(req.body, {
         abortEarly: false,
         stripUnknown: true,
       });
 
-      const { nome } = await Usuario.update(validFields);
+      const { nome } = await usuario.update(validFields);
       
       return res.json({ nome });
     } catch (error) {
       return res.status(400).json(error);
     }
-  },
+  }
 };

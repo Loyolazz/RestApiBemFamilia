@@ -25,6 +25,10 @@ class Usuario extends Model {
         return this;
     }
 
+    checkPassword(senha) {
+        return bcrypt.compare(senha, this.senha_hash)
+    }
+
     static associate(models) {
         this.hasMany(models.Perfil, { foreignKey: 'usuario_id', as: 'perfils'});
         this.belongsToMany(models.Video, { foreignKey: 'usuario_id', through:'favoritos', as: 'videos' }) //M/M through nome da tabela
