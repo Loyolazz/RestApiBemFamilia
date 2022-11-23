@@ -18,6 +18,7 @@ class Video extends Model {
     static associate(models) {
         this.belongsToMany(models.Categoria, { foreignKey: 'video_id', through:'categoria_videos', as: 'categorias' }) //M/M through nome da tabela
         this.belongsToMany(models.Usuario, { foreignKey: 'video_id', through:'favoritos', as: 'usuarios' }) //M/M through nome da tabela
+        this.belongsToMany(models.Usuario, { foreignKey: 'video_id', through: 'avaliacoes', as: 'comentarios' }) //M/M through nome da tabela
 
 
 

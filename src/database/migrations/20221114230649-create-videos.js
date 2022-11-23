@@ -9,26 +9,27 @@ module.exports = {
         type: Sequelize.INTEGER,            // numero
         primaryKey: true,                  //key primeira
         autoIncrement: true,               //adiciona o id automatico
-        allowNull: false             //nao pode ser nulo
+        allowNull: false             
        },
        titulo: {
-        type: Sequelize.STRING,            //letra
+        type: Sequelize.STRING,            
         allowNull: false,
        },
        descricao: {
-        type: Sequelize.STRING,            //letra
+        type: Sequelize.STRING,            
        },
        localizacao: {
-        type: Sequelize.STRING,            //letra
+        type: Sequelize.STRING,            
         allowNull: false,
        },
        url: {
-        type: Sequelize.STRING,            //letra
+        type: Sequelize.STRING,            
         allowNull: false,
        },
        ativo: {
         type: Sequelize.BOOLEAN,            
         allowNull: false,
+        defaultValue: true
        },
        created_at: {
         type: Sequelize.DATE,            

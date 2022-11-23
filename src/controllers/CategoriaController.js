@@ -7,7 +7,10 @@ module.exports = {
     async list(req, res) {
         const { categoria_id } = req.params;
         const categoria = await Categoria.findByPk(categoria_id, {
-            include: { association: 'videos', through:{ attributes: []}}
+            include: { 
+                association: 'videos', 
+                through:{ attributes: []}
+            }
         })
         if(!categoria) {
             return res.status(400).json({ error: 'Categoria não encontrada!' });
@@ -34,9 +37,9 @@ module.exports = {
 
 
     async store(req, res) {
-        const { nome, subcategoria, ativo } = req.body;
+        const { nome, subcategoria } = req.body;
 
-        const categoria = await Categoria.create({ nome, subcategoria, ativo});
+        const categoria = await Categoria.create({ nome, subcategoria });
 
         return res.json(categoria);
 
@@ -73,9 +76,6 @@ module.exports = {
             {where: {id: id} });
 
         return res.status(200).json({ mensagem: 'Categoria alterada com sucesso!' });
-
-
-
     }
 
 };

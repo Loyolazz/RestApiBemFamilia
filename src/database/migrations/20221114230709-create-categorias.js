@@ -12,16 +12,17 @@ module.exports = {
         allowNull: false             //nao pode ser nulo
        },
        nome: {
-        type: Sequelize.STRING,            //letra
+        type: Sequelize.STRING(70),            //letra
         allowNull: false,
        },
        subcategoria: {
-        type: Sequelize.STRING,            
+        type: Sequelize.STRING(70),            
         allowNull: false,
        },
        ativo: {
         type: Sequelize.BOOLEAN,            
         allowNull: false,
+        defaultValue: true
        },
        created_at: {
         type: Sequelize.DATE,            

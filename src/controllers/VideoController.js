@@ -3,19 +3,6 @@ const Categoria = require('../models/Categoria');
 
 module.exports = {
 
-    async list(req, res) {
-        const { categoria_id } = req.params;
-        const categoria = await Categoria.findByPk(categoria_id, {
-            include: { association: 'videos', through:{ attributes: []}}
-        })
-        if(!categoria) {
-            return res.status(400).json({ error: 'Categoria não encontrada!' });
-        }
-
-        return res.json(categoria.videos)
-
-    },
-
 
     async index(req, res) {
         const { id } = req.params;
@@ -36,7 +23,7 @@ module.exports = {
 
     async store(req, res) {
         const { categoria_id } = req.params;
-        const { titulo, descricao, localizacao, url, ativo } = req.body;
+        const { titulo, descricao, localizacao, url } = req.body;
 
         const categoria = await Categoria.findByPk(categoria_id);
 
@@ -45,7 +32,7 @@ module.exports = {
         }
                                 //PROCURA E SE NAO EXISTIR ELE VAI CRIAR
         const [ video ] = await Video.findOrCreate({                          
-            where: { titulo, descricao, localizacao, url, ativo }
+            where: { titulo, descricao, localizacao, url }
         });
 
         await categoria.addVideo(video);
@@ -55,7 +42,7 @@ module.exports = {
 
     async delete(req, res) {
         const { categoria_id } = req.params;
-        const { titulo, descricao, localizacao, url, ativo } = req.body;
+        const { id } = req.body;
 
         const categoria = await Categoria.findByPk(categoria_id);
 
@@ -64,12 +51,15 @@ module.exports = {
         }
 
         const video = await Video.findOne({                          
-            where: { titulo, descricao, localizacao, url, ativo }
+            where: { id }
         });
+        if(!video) {
+            return res.status(400).json({ error: 'Video não existe' });
+        }
 
         await categoria.removeVideo(video)
 
-        return res.json();
+        return res.status(200).json({ mensagem: 'Video removido com sucesso!' });
     },
 
     async update(req, res) {
