@@ -1,4 +1,5 @@
 const Video = require("../models/Video");
+const Avaliacao = require("../models/Avaliacao");
 const Yup = require("yup");
 
 module.exports = {
@@ -7,9 +8,9 @@ module.exports = {
     async store(req, res) {
 
         const schema = Yup.object().shape({
-            pontuacao: Yup.number().required(),
+            pontuacao: Yup.number().min(1).max(5),
             comentario: Yup.string(),
-        }).noUnknown()
+        }).noUnknown();
 
         try {
             const validFields = await schema.validate(req.body, {
@@ -19,15 +20,21 @@ module.exports = {
 
             const { video_id } = req.params;
 
-            const videos = await Video.findByPk(video_id);
+            const video = await Video.findByPk(video_id);
 
-            if (!videos){
+            if (!video){
                 return res.status(400).json({ error: 'Video não encontrado'})
             }
 
-            await videos.addAvaliacao(req.UsuarioID);
-
-            return res.json(videos);
+            await video.addAvaliacoes(req.usuarioID, {
+                through: { 
+                    pontuacao:validFields.pontuacao,
+                    comentario:validFields.comentario,
+                }
+        });
+            console.log(validFields.pontuacao)
+            return res.json(video);
+            
         } catch (error) {
             console.log(error)
             return res.status(400).json({ error });

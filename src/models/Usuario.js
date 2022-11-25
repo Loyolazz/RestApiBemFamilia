@@ -30,9 +30,8 @@ class Usuario extends Model {
     }
 
     static associate(models) {
-        this.belongsToMany(models.Video, { foreignKey: 'usuario_id', through:'favoritos', as: 'videos' }) //M/M through nome da tabela
-        this.belongsToMany(models.Video, { foreignKey: 'usuario_id', through:'avaliacoes', as: 'pontuacao' }) //M/M through nome da tabela
-
+        this.belongsToMany(models.Video, { foreignKey: 'usuario_id', through:'favoritos', as: 'videos' }) //M/M through nome da tabela   
+     
     }
 }
 

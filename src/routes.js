@@ -21,20 +21,21 @@ routes.get('/usuarios/:id', UsuarioController.show);
 routes.put('/usuarios', UsuarioController.update);
 
 //CATEGORIAS
-routes.get('/categorias', CategoriaController.index);
-routes.get('/categorias/:categoria_id', CategoriaController.list);
+routes.get('/categorias', CategoriaController.list);
+routes.get('/categorias/:categoria_id', CategoriaController.index);
 routes.post('/categorias', CategoriaController.store);
 routes.delete('/categorias/:id', CategoriaController.delete);
 routes.put('/categorias/:id', CategoriaController.update);
 
 //VIDEOS
 routes.get('/videos/:id', VideoController.index);
+routes.get('/videos', VideoController.list);
 routes.post('/categorias/:categoria_id/videos', VideoController.store);
 routes.delete('/categorias/:categoria_id/videos', VideoController.delete);
 routes.put('/categorias/:categoria_id/videos/:id', VideoController.update);
 
 //FAVORITOS
-routes.get('/favoritos', FavoritoController.index);
+routes.get('/favoritos', FavoritoController.list);
 routes.post('/favoritos/:video_id', FavoritoController.store);
 routes.delete('/favoritos/:video_id', FavoritoController.delete);
 

@@ -11,14 +11,6 @@ module.exports = {
         autoIncrement: true,               //adiciona o id automatico
         allowNull: false             //nao pode ser nulo
        },
-       pontuacao: {
-        type: Sequelize.DECIMAL(5, 2),            
-        allowNull: false,
-       },
-       comentario: {
-        type: Sequelize.STRING,            
-        allowNull: false,
-       },
        usuario_id: {
         type: Sequelize.INTEGER,            
         allowNull: false,
@@ -32,6 +24,12 @@ module.exports = {
         references: {model: 'videos', key: 'id'},    //FAZ UMA REFERENCIA COM A OUTRA TABELA (chave estrangeira)
         onUpdate: 'CASCADE',               //SE ATUALIZAR O ID ELE ATUALIZA TBM
         onDelete: 'CASCADE',                  //SE FOR DELETADO O ID ELE DELETADA TBM
+       },
+       pontuacao: {
+        type: Sequelize.DECIMAL(5, 2),            
+       },
+       comentario: {
+        type: Sequelize.STRING,            
        },
        created_at: {
         type: Sequelize.DATE,            

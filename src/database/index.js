@@ -11,9 +11,9 @@ const Avaliacao = require('../models/Avaliacao');
 const connection = new Sequelize(dbConfig);
 
 Usuario.init(connection);
-Avaliacao.init(connection);
 Categoria.init(connection);
 Video.init(connection);
+Avaliacao.init(connection);
 
 
 Usuario.associate(connection.models);
