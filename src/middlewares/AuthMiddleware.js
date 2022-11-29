@@ -1,32 +1,25 @@
-const jwt = require('jsonwebtoken');
-const authConfig = require('../config/auth');
-const { promisify } = require('util');
+const jwt = require('jsonwebtoken')
+const authConfig = require('../config/auth')
+const { promisify } = require('util')
 
+module.exports = async (req, res, next) => {
+  const authHeader = req.headers.authorization
 
+  if (!authHeader) {
+    return res.status(401).json({ error: 'Token não fornecido' })
+  }
 
-module.exports = 
+  const [, token] = authHeader.split(' ')
 
-async (req, res, next) => {
-    const authHeader = req.headers.authorization;
-    
-    if (!authHeader) {
-        return res.status(401).json({ error: 'Token não fornecido' });
-    }
+  try {
+    const tokenDecoded = await promisify(jwt.verify)(token, authConfig.secret)
 
-    const [, token] = authHeader.split(' ')
+    req.usuarioID = tokenDecoded.id
 
-    try {
-        const tokenDecoded = await promisify(jwt.verify)(token, authConfig.secret);
+    return next()
+  } catch (error) {
+    return res.status(401).json({ error: 'Token invalido' })
+  }
 
-        req.usuarioID = tokenDecoded.id;
-
-        return next();
-    } catch (error) {
-        return res.status(401).json({ error: 'Token invalido' });
-        
-    }
-
-
-
-    return next();
+  return next()
 }
